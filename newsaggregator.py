@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from newsprinter import Printer
 
 from hackernews import HackerNews           # rss
@@ -14,6 +16,7 @@ from github import GithubTrending           # bs
 
 class NewsAggregator():
     sources = []
+    printer = Printer()
 
     def __init__(self):
         self.sources = [
@@ -30,8 +33,8 @@ class NewsAggregator():
             GithubTrending(),
         ]
 
+
     def frontpage(self):
-        printer = Printer()
         newshtml = ""
 
         for source in self.sources:
@@ -39,23 +42,20 @@ class NewsAggregator():
             news = ""
 
             for story in stories:
-                news = news + printer.printStory(story)
+                news = news + self.printer.printStory(story)
 
-            newshtml = newshtml + printer.printSource(source, news)
+            newshtml = newshtml + self.printer.printSource(source, news)
 
         self.write(newshtml)
         
 
     def write(self, html):
-        f = open("layouts/home.html", "r")
-        contents = f.read()
-        f.close()
-
-        contents = contents.replace("{news}", html)
+        contents = self.printer.printIndex(html, datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
 
         g = open("index.html", "w")
         g.write(contents)
         g.close()
+
 
 if __name__ == "__main__":
     aggregator = NewsAggregator()

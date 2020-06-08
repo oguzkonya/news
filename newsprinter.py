@@ -17,5 +17,5 @@ class Printer():
     def printSource(self, source, stories):
         return self.sourceTemplate.replace("{spanclass}", source.spanclass).replace("{title}", source.title).replace("{stories}", stories)
 
-    def printIndex(self, news):
-        return self.homeTemplate.replace("{news}", news)
+    def printIndex(self, news, date):
+        return self.homeTemplate.replace("{news}", news).replace("{date}", date)
