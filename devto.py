@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
 from newssource import NewsSource
+import time
 
 class DevTo(NewsSource):
 
@@ -17,7 +18,7 @@ class DevTo(NewsSource):
             stories = bs.find_all("div", {"class": "crayons-story"})
 
             for story in stories:
-                date = story.find("time")["datetime"]
+                date = self.parseDate(time.strptime(story.find("time")["datetime"], "%Y-%m-%dT%H:%M:%SZ"))
                 t = story.find("h2", {"class": "crayons-story__title"}).a
                 link = "https://dev.to" + t['href']
                 title = t.contents[-1].strip()

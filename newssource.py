@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
+from datetime import datetime
+from time import mktime
 import feedparser
 import requests
+import timeago
 
 TIMEOUT = 5
 
@@ -36,7 +39,7 @@ class NewsSource():
         news = []
 
         for story in rss.entries:
-            date = story.published
+            date = self.parseDate(story.published_parsed)
             link = story.link
             title = story.title
             comments = getattr(story, "comments", "#")
@@ -45,3 +48,7 @@ class NewsSource():
             news.append(newsPiece)
 
         return news
+
+    
+    def parseDate(self, date):
+        return timeago.format(datetime.fromtimestamp(mktime(date)), datetime.now())

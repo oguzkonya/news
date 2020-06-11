@@ -15,7 +15,7 @@ class Slashdot(NewsSource):
 
         for story in rss.entries:
 
-            date = story.updated
+            date = self.parseDate(story.updated_parsed)
             link = story.link
             title = story.title
             comments = story.link

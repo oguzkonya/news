@@ -1,7 +1,7 @@
-import feedparser
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
 from newssource import NewsSource
+import feedparser
 
 class RedditProgramming(NewsSource):
 
@@ -17,7 +17,7 @@ class RedditProgramming(NewsSource):
         for story in rss.entries:
             b = bs(story.content[0].value, features="html.parser")
 
-            date = story.updated
+            date = self.parseDate(story.updated_parsed)
             link = b.find_all("a")[1]["href"]
             title = story.title
             comments = story.link

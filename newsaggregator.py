@@ -2,14 +2,14 @@ from datetime import datetime
 from newsprinter import Printer
 from hackernews import HackerNews           # rss
 from lobsters import Lobsters               # rss
+from pocketgamer import PocketGamer         # rss
+from gamesindustry import GamesIndustry     # rss
 from gamasutra import GamasutraNews         # rss
 from gamasutra import GamasutraBlogs        # rss
 from reddit import RedditProgramming        # rss
 from slashdot import Slashdot               # rss
 from oyungezer import Oyungezer             # bs
 from devto import DevTo                     # bs
-from gamesindustry import GamesIndustry     # bs
-from pocketgamer import PocketGamer         # bs
 from github import GithubTrending           # bs
 
 class NewsAggregator():
@@ -22,14 +22,14 @@ class NewsAggregator():
         self.sources = [
             HackerNews(),
             Lobsters(),
+            PocketGamer(),
+            GamesIndustry(),
             GamasutraNews(),
             GamasutraBlogs(),
             RedditProgramming(),
             Slashdot(),
             Oyungezer(),
             DevTo(),
-            GamesIndustry(),
-            PocketGamer(),
             GithubTrending(),
         ]
 
