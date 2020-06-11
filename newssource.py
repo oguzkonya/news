@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
+from pprint import pprint
 import feedparser
 import requests
 
@@ -10,6 +11,7 @@ class NewsSource():
     URL = ""
     title = "News Source"
     spanclass = "news-source"
+
 
     def fetch(self, url):
         result = None
@@ -29,16 +31,18 @@ class NewsSource():
 
         return result
 
+
     def frontpage(self):
         rss = feedparser.parse(self.URL)
         news = []
 
         for story in rss.entries:
-            date = story.updated
+            date = story.published
             link = story.link
             title = story.title
+            comments = getattr(story, "comments", "#")
 
-            newsPiece = NewsPiece(title, date, link)
+            newsPiece = NewsPiece(title, date, link, comments)
             news.append(newsPiece)
 
         return news

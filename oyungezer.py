@@ -8,6 +8,7 @@ class Oyungezer(NewsSource):
     title = "Oyungezer"
     spanclass = "oyungezer"
 
+
     def frontpage(self):
         bs = self.fetch(self.URL)
         news = []
@@ -20,8 +21,9 @@ class Oyungezer(NewsSource):
                 t = story.find("h5", {"class": "card-title"}).a
                 link = "https:" + t['href']
                 title = t.string
+                comments = link + "#comment"
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
         return news

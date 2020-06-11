@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
 from newssource import NewsSource
-import requests
 
 class PocketGamer(NewsSource):
 
     URL = "https://www.pocketgamer.biz/news/"
     title = "PocketGamer"
     spanclass = "pocket-gamer"
+
 
     def frontpage(self):
         bs = self.fetch(self.URL)
@@ -21,8 +21,9 @@ class PocketGamer(NewsSource):
                 t = story.find("h2").a
                 link = "https://www.pocketgamer.biz" + t['href']
                 title = t.string
+                comments = link + "#comments"
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
         return news

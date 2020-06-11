@@ -6,6 +6,7 @@ class GamasutraNews(NewsSource):
     title = "Gamasutra News"
     spanclass = "gamasutra-news"
 
+
 class GamasutraBlogs(NewsSource):
 
     URL = "http://www.gamasutra.com/blogs/rss/"

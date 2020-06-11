@@ -8,6 +8,7 @@ class DevTo(NewsSource):
     title = "Dev.to"
     spanclass = "devto"
 
+
     def frontpage(self):
         bs = self.fetch(self.URL)
         news = []
@@ -20,8 +21,9 @@ class DevTo(NewsSource):
                 t = story.find("h2", {"class": "crayons-story__title"}).a
                 link = "https://dev.to" + t['href']
                 title = t.contents[-1].strip()
+                comments = link + "#comments"
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
         return news

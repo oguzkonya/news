@@ -1,9 +1,10 @@
 class NewsPiece():
     
-    def __init__(self, title, date, link):
+    def __init__(self, title, date, link, comments):
         self.title = title
         self.date = date
         self.link = link
+        self.comments = comments
         self.domain = self.convertLinkToDomain(link)
 
 

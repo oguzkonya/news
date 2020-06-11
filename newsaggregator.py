@@ -1,7 +1,5 @@
 from datetime import datetime
-
 from newsprinter import Printer
-
 from hackernews import HackerNews           # rss
 from lobsters import Lobsters               # rss
 from gamasutra import GamasutraNews         # rss
@@ -15,8 +13,10 @@ from pocketgamer import PocketGamer         # bs
 from github import GithubTrending           # bs
 
 class NewsAggregator():
+
     sources = []
     printer = Printer()
+
 
     def __init__(self):
         self.sources = [

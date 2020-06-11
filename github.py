@@ -7,6 +7,7 @@ class GithubTrending(NewsSource):
     URL = "https://github.com/trending"
     title = "GitHub Trending"
     spanclass = "github-trending"
+    
 
     def frontpage(self):
         bs = self.fetch(self.URL)
@@ -26,7 +27,8 @@ class GithubTrending(NewsSource):
                     title = link
 
                 link = "https://github.com" + link
-                newsPiece = NewsPiece(title, date, link)
+                comments = "#"
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
         return news

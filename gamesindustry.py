@@ -8,6 +8,7 @@ class GamesIndustry(NewsSource):
     title = "GamesIndustry.biz"
     spanclass = "games-industry"
 
+
     def frontpage(self):
         bs = self.fetch(self.URL)
         news = []
@@ -20,8 +21,9 @@ class GamesIndustry(NewsSource):
                 t = headline.find("a", {"class": "link-overlay"})
                 link = "https://www.gamesindustry.biz" + t['href']
                 title = t['title']
+                comments = link
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
             entries = bs.find_all("div", {"class": "entry"})
@@ -31,8 +33,9 @@ class GamesIndustry(NewsSource):
                 t = entry.find("h2", {"class": "title"}).a
                 link = "https://www.gamesindustry.biz" + t['href']
                 title = t.string
+                comments = link
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
             features = bs.find_all("div", {"class": "feature"})
@@ -42,8 +45,9 @@ class GamesIndustry(NewsSource):
                 t = feature.find("a", {"class": "link-overlay"})
                 link = "https://www.gamesindustry.biz" + t['href']
                 title = t['title']
+                comments = link
 
-                newsPiece = NewsPiece(title, date, link)
+                newsPiece = NewsPiece(title, date, link, comments)
                 news.append(newsPiece)
 
         return news
