@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
-from pprint import pprint
 import feedparser
 import requests
 
