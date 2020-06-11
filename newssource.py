@@ -8,6 +8,8 @@ TIMEOUT = 5
 class NewsSource():
 
     URL = ""
+    title = "News Source"
+    spanclass = "news-source"
 
     def fetch(self, url):
         result = None

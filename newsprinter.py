@@ -12,7 +12,7 @@ class Printer():
         return contents
 
     def printStory(self, story):
-        return self.storyTemplate.replace("{link}", story.link).replace("{title}", story.title).replace("{date}", story.date)
+        return self.storyTemplate.replace("{link}", story.link).replace("{title}", story.title).replace("{domain}", story.domain).replace("{date}", story.date)
 
     def printSource(self, source, stories):
         return self.sourceTemplate.replace("{spanclass}", source.spanclass).replace("{title}", source.title).replace("{stories}", stories)
