@@ -3,11 +3,11 @@ from newsprinter import Printer
 from hackernews import HackerNews           # rss
 from lobsters import Lobsters               # rss
 from pocketgamer import PocketGamer         # rss
-from gamesindustry import GamesIndustry     # rss
 from gamasutra import GamasutraNews         # rss
 from gamasutra import GamasutraBlogs        # rss
 from reddit import RedditProgramming        # rss
 from slashdot import Slashdot               # rss
+from gamesindustry import GamesIndustry     # bs
 from oyungezer import Oyungezer             # bs
 from devto import DevTo                     # bs
 from github import GithubTrending           # bs
@@ -23,11 +23,11 @@ class NewsAggregator():
             HackerNews(),
             Lobsters(),
             PocketGamer(),
-            GamesIndustry(),
             GamasutraNews(),
             GamasutraBlogs(),
             RedditProgramming(),
             Slashdot(),
+            GamesIndustry(),
             Oyungezer(),
             DevTo(),
             GithubTrending(),
