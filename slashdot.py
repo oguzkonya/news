@@ -14,13 +14,15 @@ class Slashdot(NewsSource):
         news = []
 
         for story in rss.entries:
+            try:
+                date = self.parseDate(story.updated_parsed)
+                link = story.link
+                title = story.title
+                comments = story.link
 
-            date = self.parseDate(story.updated_parsed)
-            link = story.link
-            title = story.title
-            comments = story.link
-
-            newsPiece = NewsPiece(title, date, link, comments)
-            news.append(newsPiece)
+                newsPiece = NewsPiece(title, date, link, comments)
+                news.append(newsPiece)
+            except Exception as e:
+                print(e)
 
         return news

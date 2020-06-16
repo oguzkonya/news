@@ -15,14 +15,18 @@ class RedditProgramming(NewsSource):
         news = []
 
         for story in rss.entries:
-            b = bs(story.content[0].value, features="html.parser")
+            try:
+                b = bs(story.content[0].value, features="html.parser")
 
-            date = self.parseDate(story.updated_parsed)
-            link = b.find_all("a")[1]["href"]
-            title = story.title
-            comments = story.link
+                date = self.parseDate(story.updated_parsed)
+                link = b.find_all("a")[1]["href"]
+                title = story.title
+                comments = story.link
 
-            newsPiece = NewsPiece(title, date, link, comments)
-            news.append(newsPiece)
+                newsPiece = NewsPiece(title, date, link, comments)
+                news.append(newsPiece)
+            except Exception as e:
+                print(e)
+
 
         return news

@@ -14,21 +14,24 @@ class GithubTrending(NewsSource):
         news = []
 
         if bs is not None:
-            stories = bs.find_all("article", {"class": "Box-row"})
+            try:
+                stories = bs.find_all("article", {"class": "Box-row"})
 
-            for story in stories:
-                date = "today"
-                link = story.find("h1").a['href']
-                titleP = story.find("p")
+                for story in stories:
+                    date = "today"
+                    link = story.find("h1").a['href']
+                    titleP = story.find("p")
 
-                if titleP is not None:
-                    title = titleP.encode_contents().decode('UTF-8').strip()
-                else:
-                    title = link
+                    if titleP is not None:
+                        title = titleP.encode_contents().decode('UTF-8').strip()
+                    else:
+                        title = link
 
-                link = "https://github.com" + link
-                comments = "#"
-                newsPiece = NewsPiece(title, date, link, comments)
-                news.append(newsPiece)
+                    link = "https://github.com" + link
+                    comments = "#"
+                    newsPiece = NewsPiece(title, date, link, comments)
+                    news.append(newsPiece)
+            except Exception as e:
+                print(e)
 
         return news

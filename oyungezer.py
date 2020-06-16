@@ -14,16 +14,19 @@ class Oyungezer(NewsSource):
         news = []
 
         if bs is not None:
-            stories = bs.find_all("div", {"class": "card-body"})
+            try:
+                stories = bs.find_all("div", {"class": "card-body"})
 
-            for story in stories:
-                date = story.find("h6", {"class": "card-date"}).a.string
-                t = story.find("h5", {"class": "card-title"}).a
-                link = "https:" + t['href']
-                title = t.string
-                comments = link + "#comment"
+                for story in stories:
+                    date = story.find("h6", {"class": "card-date"}).a.string
+                    t = story.find("h5", {"class": "card-title"}).a
+                    link = "https:" + t['href']
+                    title = t.string
+                    comments = link + "#comment"
 
-                newsPiece = NewsPiece(title, date, link, comments)
-                news.append(newsPiece)
+                    newsPiece = NewsPiece(title, date, link, comments)
+                    news.append(newsPiece)
+            except Exception as e:
+                print(e)    
 
         return news

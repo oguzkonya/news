@@ -17,37 +17,46 @@ class GamesIndustry(NewsSource):
             headlines = bs.find_all("div", {"class": "headline"})
 
             for headline in headlines:
-                date = headline.find("span", {"class": "timestamp"}).contents[-1].strip()
-                t = headline.find("a", {"class": "link-overlay"})
-                link = "https://www.gamesindustry.biz" + t['href']
-                title = t['title']
-                comments = link
+                try:
+                    date = headline.find("span", {"class": "timestamp"}).contents[-1].strip()
+                    t = headline.find("a", {"class": "link-overlay"})
+                    link = "https://www.gamesindustry.biz" + t['href']
+                    title = t['title']
+                    comments = link
 
-                newsPiece = NewsPiece(title, date, link, comments)
-                news.append(newsPiece)
+                    newsPiece = NewsPiece(title, date, link, comments)
+                    news.append(newsPiece)
+                except Exception as e:
+                    print(e)
 
             entries = bs.find_all("div", {"class": "entry"})
 
             for entry in entries:
-                date = entry.find("a", {"class": "timestamp"}).contents[-1].strip()
-                t = entry.find("h2", {"class": "title"}).a
-                link = "https://www.gamesindustry.biz" + t['href']
-                title = t.string
-                comments = link
+                try:
+                    date = entry.find("a", {"class": "timestamp"}).contents[-1].strip()
+                    t = entry.find("h2", {"class": "title"}).a
+                    link = "https://www.gamesindustry.biz" + t['href']
+                    title = t.string
+                    comments = link
 
-                newsPiece = NewsPiece(title, date, link, comments)
-                news.append(newsPiece)
+                    newsPiece = NewsPiece(title, date, link, comments)
+                    news.append(newsPiece)
+                except Exception as e:
+                    print(e)
 
             features = bs.find_all("div", {"class": "feature"})
 
             for feature in features:
-                date = feature.find("a", {"class": "timestamp"}).contents[-1].strip()
-                t = feature.find("a", {"class": "link-overlay"})
-                link = "https://www.gamesindustry.biz" + t['href']
-                title = t['title']
-                comments = link
+                try:
+                    date = feature.find("a", {"class": "timestamp"}).contents[-1].strip()
+                    t = feature.find("a", {"class": "link-overlay"})
+                    link = "https://www.gamesindustry.biz" + t['href']
+                    title = t['title']
+                    comments = link
 
-                newsPiece = NewsPiece(title, date, link, comments)
-                news.append(newsPiece)
+                    newsPiece = NewsPiece(title, date, link, comments)
+                    news.append(newsPiece)
+                except Exception as e:
+                    print(e)
 
         return news
