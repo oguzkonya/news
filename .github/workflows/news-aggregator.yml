@@ -2,7 +2,7 @@ name: News Aggregator
 
 on:
   schedule:
-    - cron:  '0 5/12 * * *'
+    - cron:  '0 5 * * *'
 
 jobs:
   build:
