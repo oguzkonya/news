@@ -1,3 +1,4 @@
+import re
 from bs4 import BeautifulSoup as bs
 from newspiece import NewsPiece
 from newssource import NewsSource
@@ -23,7 +24,9 @@ class GithubTrending(NewsSource):
                     titleP = story.find("p")
 
                     if titleP is not None:
-                        title = titleP.encode_contents().decode('UTF-8').strip()
+                        titleP = titleP.encode_contents().decode('UTF-8').strip()
+                        titleP = re.sub(r'<g-emoji [a-zA-Z0-9\"=_\-:/\. ]+>\W</g-emoji>', "", titleP)
+                        title = link + ": " + titleP
                     else:
                         title = link
 
