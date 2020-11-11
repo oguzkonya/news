@@ -7,9 +7,10 @@ from gamasutra import GamasutraNews         # rss
 from gamasutra import GamasutraBlogs        # rss
 from reddit import RedditProgramming        # rss
 from slashdot import Slashdot               # rss
+from devto import DevToCsharp               # rss
+from devto import DevToGamedev              # rss
 from gamesindustry import GamesIndustry     # bs
 from oyungezer import Oyungezer             # bs
-from devto import DevTo                     # bs
 from github import GithubTrending           # bs
 
 class NewsAggregator():
@@ -27,9 +28,10 @@ class NewsAggregator():
             GamasutraBlogs(),
             RedditProgramming(),
             Slashdot(),
+            DevToCsharp(),
+            DevToGamedev(),
             GamesIndustry(),
             Oyungezer(),
-            DevTo(),
             GithubTrending(),
         ]
 
