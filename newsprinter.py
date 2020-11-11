@@ -1,3 +1,5 @@
+import html
+
 class Printer():
 
     def __init__(self):
@@ -20,11 +22,11 @@ class Printer():
         else:
             c = ""
 
-        return self.storyTemplate.replace("{link}", story.link).replace("{title}", story.title).replace("{domain}", story.domain).replace("{date}", story.date).replace("{comments}", c)
+        return self.storyTemplate.replace("{link}", story.link).replace("{title}", html.escape(story.title)).replace("{domain}", story.domain).replace("{date}", story.date).replace("{comments}", c)
 
 
     def printSource(self, source, stories):
-        return self.sourceTemplate.replace("{spanclass}", source.spanclass).replace("{title}", source.title).replace("{stories}", stories)
+        return self.sourceTemplate.replace("{spanclass}", source.spanclass).replace("{title}", html.escape(source.title)).replace("{stories}", stories)
 
 
     def printIndex(self, news, date):
