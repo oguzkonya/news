@@ -5,7 +5,7 @@ from newssource import NewsSource
 
 class GithubTrending(NewsSource):
 
-    URL = "https://github.com/trending"
+    URL = "https://github.com/trending?spoken_language_code=en"
     title = "GitHub Trending"
     spanclass = "github-trending"
     
@@ -24,8 +24,7 @@ class GithubTrending(NewsSource):
                     titleP = story.find("p")
 
                     if titleP is not None:
-                        titleP = titleP.encode_contents().decode('UTF-8').strip()
-                        titleP = re.sub(r'<g-emoji [a-zA-Z0-9\"=_\-:/\. ]+>\W</g-emoji>', "", titleP)
+                        titleP = titleP.getText()
                         title = link + ": " + titleP
                     else:
                         title = link
