@@ -19,9 +19,9 @@ class GamesIndustry(NewsSource):
             for headline in headlines:
                 try:
                     date = headline.find("span", {"class": "timestamp"}).contents[-1].strip()
-                    t = headline.find("a", {"class": "link-overlay"})
+                    t = headline.find("h2", {"class": "title"}).a
                     link = "https://www.gamesindustry.biz" + t['href']
-                    title = t['title']
+                    title = t.getText()
                     comments = link
 
                     newsPiece = NewsPiece(title, date, link, comments)
@@ -36,7 +36,7 @@ class GamesIndustry(NewsSource):
                     date = entry.find("a", {"class": "timestamp"}).contents[-1].strip()
                     t = entry.find("h2", {"class": "title"}).a
                     link = "https://www.gamesindustry.biz" + t['href']
-                    title = t.string
+                    title = t.getText()
                     comments = link
 
                     newsPiece = NewsPiece(title, date, link, comments)
@@ -49,9 +49,9 @@ class GamesIndustry(NewsSource):
             for feature in features:
                 try:
                     date = feature.find("a", {"class": "timestamp"}).contents[-1].strip()
-                    t = feature.find("a", {"class": "link-overlay"})
+                    t = feature.find("h2", {"class": "title"}).a
                     link = "https://www.gamesindustry.biz" + t['href']
-                    title = t['title']
+                    title = t.getText()
                     comments = link
 
                     newsPiece = NewsPiece(title, date, link, comments)
